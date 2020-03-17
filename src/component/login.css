@@ -1,0 +1,79 @@
+/* #table{
+    
+        text-align: center;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        border: 3px solid #ddd;
+        width: 50%; 
+        padding: 30px;
+        align-items: center;
+        background-color: aquamarine;
+        table-layout: initial;
+       
+      
+} */
+.title{
+    color: blue;
+    margin-left: 20px;
+    /* margin-top: 10px; */
+    margin-right: 20px;
+    margin-bottom: 10px;
+    
+}
+.layout{
+    align-items: center;
+    border-width: 10px;
+    background-origin: padding-box;
+
+}
+.input[type='text']{
+    columns: width 20px;
+    column-rule-width: 50px;
+    align-content: center;
+    margin-left: 40px;
+    margin-top: 40px;
+    margin-right: 404px;
+    padding: 20px;
+   
+}
+.align{
+    background:whitesmoke;
+    border: 2px solid black;
+    padding: 70px;
+    color:burlywood;
+    margin-left: 400px;
+    margin-top: 10px;
+    margin-right: 400px;
+    height: 220px;
+    border-radius: 8px;
+}
+.input[type= 'Button']{
+    columns: width 20px;
+    column-rule-width: 50px;
+    align-content: center;
+    margin-left: 20px;
+    margin-top: 40px;
+    margin-right: 404px;
+}
+@media (max-width:1155px){
+    .layout{
+        width:100%;
+    }
+}
+@media (max-width:1155px){
+    #text{
+        width: 100%;
+    }
+}
+@media (max-width:1155px){
+    #button{
+        width: 100%;
+    }
+}
+@media (max-width:1155px){
+    #head{
+        width: 100%;
+    }
+}
+
+

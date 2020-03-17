@@ -1,0 +1,42 @@
+.form-row{
+    display: flex;
+    padding: 10px;
+    margin-top: 0px;
+}
+.form-row label{
+    padding-right: 10px;
+    color: rgb(107, 101, 18);
+    flex:1;
+}
+.form-row input{
+    padding-right: 10px;
+    width: 190px;
+    height: 20px;
+    text-align: center;
+    /* box-sizing: content-box;     */
+
+}
+ h2{
+    color: rgb(105, 30, 4);
+    margin-top: 0px;
+    padding-top: 0px;
+    text-align: center;
+    /* margin-left: 1px; */
+}
+.form-row Button{
+    margin-left: 120px;
+    color: rgb(29, 14, 1);
+    margin-top: 10px;
+    margin-bottom:90px;
+}
+.form{
+    margin-top: 0px;
+    padding-top: 0px;
+    border: 2px solid blue;
+}
+.align{
+    margin-top: 20px;
+    /* padding: 170px; */
+    padding-bottom: 190px;
+    
+}

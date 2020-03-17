@@ -1,0 +1,132 @@
+/* .appbar{
+    color: bisque;
+    background-color: black;
+} */
+.menubutton {
+    /* height: 10px; */
+    width: 30px;
+    margin-left: 10px;
+    /* margin-left: 10px */
+  }
+  .searchIcon {
+    width: 5px;
+    height: "100%";
+    position: "absolute";
+    margin-left: 120px;
+    display: "flex";
+    padding-right: 5px;
+    /* alignItems: 'center'; */
+    /* justifyContent: 'center'; */
+  }
+  .logo {
+    padding: 20px;
+  }
+  .Accountcircle {
+    /* padding: 400px; */
+    margin-left: px;
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+  }
+  #setting{
+    float: right;
+    padding-left: 10px;
+    margin-left: 60px;
+    align-items: center;
+    margin-top: 10px;
+    
+  }
+  
+  .drawer{
+    margin:4px, 4px; 
+                padding:4px; 
+                width: 200px; 
+                height: 110px; 
+                overflow: auto;
+                overflow-y: scroll;
+                padding: 0 20px 0px 20px;
+                height: calc(100% - 150px);
+                text-align:justify; 
+  }
+  .account{
+    margin-left: 200px;
+    padding-left: 400px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .main{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    flex-direction: row;
+    flex-grow: 1;
+    width: 700px;
+    height: 300px;
+    margin-left: 100px;
+    
+  }
+  #notebox{
+    width: 500px;
+    height: 100px;
+    margin-left: 80px;
+    text-rendering: optimizeSpeed;
+  }
+#chip{
+  margin-top:35px;
+  align-content: center;
+  text-align: center;
+}
+/* #icon{
+  padding-left: 10px;
+  padding-right: 10px;
+} */
+/* .card{
+  margin-left: 200px;
+  margin-right: 300px;
+  height: 90px;
+  border-bottom: 20px;
+  min-width: 250px;
+  display: inline-block;
+  padding-right: 50px;
+  
+
+} */
+#createButton{
+  margin-top: 0px;
+  margin-left: 200px;
+  margin-bottom: 0px;
+
+
+}
+.search{
+  width:120px;
+  margin-left: 20px;
+  /* padding-left: 10px; */
+}
+@media only screen and (max-width:400px){
+  .appbar{
+      width:100%;
+  }
+}
+@media only screen and (max-width:400px){
+  .main{
+      width:100%;
+      /* min-width:20%; */
+  }
+}
+@media only screen and (max-width:400px){
+  .searchIcon{
+      width:100%;
+  }
+  .search{
+    width: 100%;
+  }
+}
+@media (max-width:400px){
+  .account{
+      width:100%;
+  }
+  .setting{
+    width: 100%;
+  }
+}
