@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { add } from '../Service/Service'
-import axios from 'axios'
+import { Snackbar } from '@material-ui/core'
 // import Service from '../Service/Service'
 function Example() {
   //   useEffect(() => {
@@ -9,33 +9,42 @@ function Example() {
   //   )
 
   const addlabletonote = (noteid, labelid) => {
-   console.log(noteid,labelid);
-   
-    return axios.post("http://localhost:8080/label/addLabelToNote", {
-      params: {
-          "noteId": noteid,
-          "labelId":labelid
-          
-      },
-      headers: {
-          "Content-Type": "application/json;charset=utf-8",
-          "decodeToken": sessionStorage.getItem("token")
-      }
-  })
-   // add(noteid,addlabel)
+    let addlabel = {}
+    // let addnote={}
+    addlabel.noteId = noteid
+    addlabel.labelId = labelid
+    add(noteid,labelid)
       .then(response => {
         console.log("response ---->", response.data)
       }).catch(error => {
         console.log("error ---->", error.message)
       })
-
-
-
-
   }
+  const [state, setState] = React.useState({
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+
+  const { vertical, horizontal, open } = state;
+
+  const handleClick = newState => () => {
+    setState({ open: true, ...newState });
+  };
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
   return (
     <div>
-      <button onClick={() => addlabletonote(10, 34)}>send</button>
+      <button  >send</button>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        key={`${vertical},${horizontal}`}
+        open={open}
+        onClose={handleClose}
+        message="I love snacks"
+      />
     </div>
   );
 }

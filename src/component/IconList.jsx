@@ -6,7 +6,7 @@ import ArchiveIcon from '@material-ui/icons/Archive';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List'
-import { ListItemIcon, Checkbox } from '@material-ui/core'
+import { ListItemIcon, Checkbox, ButtonGroup } from '@material-ui/core'
 import { Menu, MenuItem } from '@material-ui/core'
 import { deletenote, note, addLabel } from '../Service/Service';
 import DeleteNote from './DeleteNote';
@@ -16,18 +16,31 @@ import TextField from '@material-ui/core/TextField'
 import GetAllLabels from './GetAllLabels';
 import TrashNote from './TrashNote'
 import ArchievedNote from './ArchievedNote';
+import AddLabelToNote from './AddLabelToNote'
+import DateTimePicker from 'react-datetime-picker/dist/DateTimePicker';
+import Copy from './Copy';
 
 export default function IconList(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [popper, setPopper] = React.useState(false);
     const [labelTitle, setLabelTitle] = React.useState('');
     const [anchorE, setAnchorE] = React.useState(null);
+    const [anchorE2, setAnchorE2] = React.useState(null);
+    const [date, setDate] = React.useState(new Date);
     const handleClick1 = event => {
         setAnchorE(event.currentTarget);
     };
 
     const handleClose1 = () => {
         setAnchorE(null);
+    };
+
+    const handleClick2 = event => {
+        setAnchorE2(event.currentTarget);
+    };
+
+    const handleClose2 = () => {
+        setAnchorE2(null);
     };
 
 
@@ -49,7 +62,19 @@ export default function IconList(props) {
     const open = Boolean(popper);
     return (
         <List>
-            <ListItemIcon><AddAlertIcon /></ListItemIcon>
+            <ListItemIcon><Copy function={handleClick2} /></ListItemIcon>
+            <Menu
+                anchorEl={anchorE2}
+                keepMounted
+                open={Boolean(anchorE2)}
+                onClose={handleClose2}
+            >
+                <div style={{ width: "80%", position: "relative" }}>
+                    <MenuItem><DateTimePicker value={date} onChange={() => setDate(date)} />
+                        <Button size="small" >Set</Button>
+                    </MenuItem></div>
+
+            </Menu>
             <ListItemIcon><PersonAddIcon /></ListItemIcon>
             <ListItemIcon> <ImageIcon /></ListItemIcon>
             <ArchievedNote data={props.data} />
@@ -62,14 +87,9 @@ export default function IconList(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                {/* <MenuItem variant="contained" onClose={handleClose} color="primary" onClick={handlePopper}>
-            Create label
-            <CreateLabel value={labelTitle}  data={popper} function={handlePopperClose}  openn={open}/>
-              </MenuItem> */}
                 <MenuItem>
-                    {/* <CreateLabel value={labelTitle}  data={popper} function={handlePopperClose}  openn={open}/> */}
+
                 </MenuItem>
-                {/* <MenuItem onClose={handleClose} onClick={props.getfunction}>add label</MenuItem> */}
                 <MenuItem onClick={handleClick1}>add label</MenuItem>
                 <Menu
                     className="box1"
@@ -86,14 +106,15 @@ export default function IconList(props) {
                         Create label
                          <CreateLabel value={labelTitle} data={popper} function={handlePopperClose} openn={open} />
                     </MenuItem>
-                        <Checkbox  style={{marginTop:"20px"}}/>
+                    {/* <Checkbox style={{ marginTop: "20px" }} /> */}
                     <GetAllLabels />
+                  
                 </Menu>
                 <TrashNote data={props.data} />
             </Menu>
-                <ListItemIcon><Button size="small" onClick={props.function}>Close</Button></ListItemIcon>
-                 <ListItemIcon> <Button size="small" onClick={props.func}>Create</Button>
-                 </ListItemIcon>
+            <ListItemIcon><Button size="small" onClick={props.function}>Close</Button></ListItemIcon>
+            <ListItemIcon> <Button size="small" onClick={props.func}>Create</Button>
+            </ListItemIcon>
         </List>
     )
 }

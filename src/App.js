@@ -30,12 +30,12 @@ function App() {
       {/* <NoteCard/> */}
   {/* <IconList/> */}
       {/* <Getrequest/> */}
-      <Example/>
+      {/* <Example/> */}
       {/* <Propcomponent/> */}
       {/* <Greeting/> */}
       {/* <Login/> */}
       {/* <Register/> */}
-      {/* <Router/> */}
+      <Router/>
       {/* <ListOfTrash/> */}
       {/* <GetAllLabels/> */}
       {/* <CreateNote/> */}

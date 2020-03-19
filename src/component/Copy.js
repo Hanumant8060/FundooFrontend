@@ -1,91 +1,39 @@
-import React, { useState, useEffect } from 'react'
-
-import Card from '@material-ui/core/Card';
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import List from '@material-ui/core/List'
-import { ListItemIcon, Checkbox, TextField } from '@material-ui/core'
-import { getNotes } from '../Service/Service'
-import IconList from './IconList';
-import { Divider } from '@material-ui/core';
-import Dashboard from './Dashboard';
-import Example from './Example';
-import GetAllLabels from './GetAllLabels';
-import TrashNote from './TrashNote';
-import CreateLabel from './CreateLabel';
+import React, { Component } from 'react';
+import DateTimePicker from 'react-datetime-picker';
+import { addReminder } from '../Service/Service';
+import { ListItemIcon, MenuItem, Button } from '@material-ui/core';
+import AddAlertIcon from '@material-ui/icons/AddAlert';
 
 
-function Copy(props) {
-    const [popper, setPopper] = React.useState(false);
-    const [anchorE, setAnchorE] = React.useState(null);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+class Copy extends Component {
+  state = {
+    date: new Date(),
+  }
 
+  onChange = date => this.setState({ date })
+  reminder = () => {
+    addReminder().then(response => {
+      console.log(response);
 
-    const handleClick1 = event => {
-        setAnchorE(event.currentTarget);
-      };
-      
-      const handleClose1 = () => {
-        setAnchorE(null);
-      };
-
-      const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handlePopper = event => {
-        setPopper(event.currentTarget);
-    };
-
-    const handlePopperClose = () => {
-        setPopper(true);
-    };
-    const open = Boolean(popper);
-
+    }).catch(error => {
+      console.log("error ---->", error.message)
+    })
+  }
+  render() {
     return (
       <div>
-      <ListItemIcon><MoreVertIcon onClick={handleClick} /></ListItemIcon>
-           
-           <Menu
-               anchorEl={anchorEl}
-               keepMounted
-               open={Boolean(anchorEl)}
-               onClose={handleClose}
-           > 
-          
-             <MenuItem>
-               {/* <CreateLabel value={labelTitle}  data={popper} function={handlePopperClose}  openn={open}/> */}
-               </MenuItem>
-               {/* <MenuItem onClose={handleClose} onClick={props.getfunction}>add label</MenuItem> */}
-               <MenuItem onClick={handleClick1}>add label</MenuItem>
-               <Menu 
-               className="box1"
-               anchorE={anchorE}
-               keepMounted
-               open={Boolean(anchorE)}
-               onClose={handleClose1}
-               >
-                    {/* <MenuItem variant="contained"  color="primary" onClick={handlePopper}>
-           Create label
-           <CreateLabel  data={popper} function={handlePopperClose}  openn={open}/>
-             </MenuItem> */}
-             <TextField></TextField>
-             <button >Send</button>
-                 <Checkbox/>
-                 <GetAllLabels/>
-                 </Menu>
-               <TrashNote data={props.data} />
-           </Menu>
-     
-            
-         
+        {/* <DateTimePicker
+          onChange={this.onChange}
+          value={this.state.date}
+        /> */}
+        <div>
+          <AddAlertIcon onClick={this.props.function}></AddAlertIcon>
+          {/* <MenuItem><DateTimePicker value={this.date} onChange={this.onChange}/>
+                    <Button size="small" >Set</Button>
+                    </MenuItem> */}
         </div>
-    )
-
+      </div>
+    );
+  }
 }
 export default Copy;

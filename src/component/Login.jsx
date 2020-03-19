@@ -4,13 +4,17 @@ import Button from '@material-ui/core/Button';
 import './login.css'
 import Link from '@material-ui/core/Link';
 import {login} from '../Service/Service';
+import { Snackbar } from '@material-ui/core';
 
 const initialState = {
     name: "",
     email:"",
     password: "",
     nameError: "",
-    passwordError: ""
+    passwordError: "",
+    open: false,
+    vertical: 'top',
+    horizontal: 'center',
 };
 class Login extends Component {
     state = initialState;
@@ -66,8 +70,8 @@ class Login extends Component {
             console.log(Response.data.message)
            // alert(Response.data.message)
            sessionStorage.setItem("token",Response.data.result)
-        // localStorage.setItem("token",Response.data.result)
-            onclick = this.props.history.push('/dashboard')
+        // localStorage.setItem("token",Response.data.result
+            onclick = this.props.history.push('/dashboard/note')
         })
         .catch(error =>{
             //console.log(error.response.data)
@@ -75,7 +79,9 @@ class Login extends Component {
         });
 
     }
-    render() {
+    render() 
+  {
+    const { vertical, horizontal, open } = this.state;
         return (
             <div className="layout">
                 <div className="align">
@@ -106,6 +112,14 @@ class Login extends Component {
                                     <tr>
                                         <td id="button">
                                             <Button variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
+                                            {/* <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        key={`${vertical},${horizontal}`}
+        open
+        autoOpenDuration={90000000000000}
+        onClose={handleClose}
+        message="I love snacks"
+      /> */}
                                         </td>
                                         <td>
                                             <Button variant="contained" color="secondary" onClick={

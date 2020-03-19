@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import React, { useEffect } from 'react';
 //import { AppBar, Toolbar, IconButton, InputBase, Typography } from "@material-ui/core";
 //import MenuIcon from '@material-ui/icons/Menu'
@@ -55,15 +56,18 @@ import { deletenote } from '../Service/Service'
 import CreateLabel from './CreateLabel';
 import GetAllLabels from './GetAllLabels';
 import ListOfTrash from './ListOfTrash'
+import { Snackbar, Checkbox } from '@material-ui/core';
 
 
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   // const [isopenn, setisOpen] = React.useState(false);
-   const [isopen,setIsOpen]=React.useState(false);
+  const [isopen, setIsOpen] = React.useState(false);
   const [openpopup, setOpenPopup] = React.useState(false);
   const openn = Boolean(anchorEl);
+
+  console.log(props, "props");
 
   const openEditLabel = () => {
     setOpenPopup(true);
@@ -75,7 +79,7 @@ export default function Dashboard(props) {
 
   const togglePopup = () => {
     setIsOpen(true)
-    console.log("value of isopen ",isopen)
+    console.log("value of isopen ", isopen)
   };
 
   const toggleClose = () => {
@@ -105,11 +109,20 @@ export default function Dashboard(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const handleTrash = () => {
+    props.data.history.push('/dashboard/trash')
+  }
+  const handleNotes=()=>{
+    props.data.history.push('/dashboard/note')
+  }
+  const handleArchive=()=>{
+    props.data.history.push('/dashboard/archive')
+  }
 
- 
+
   return (
     <div>
-      <div className="appbar">
+      <div className="appbar" style={{ color: "black" }}>
         <AppBar color="transparent" position="fixed">
           <Toolbar>
             <IconButton
@@ -121,9 +134,9 @@ export default function Dashboard(props) {
             >
               <MenuIcon />
             </IconButton>
-            <Typography className="logo" variant="h6" noWrap>
-              logo
-                </Typography>
+            <Typography className="logo" variant="h6" noWrap align="center">
+              FunDoo<img src="ak.png" alt="keep" />
+            </Typography>
             <div className="searchIcon">
               <SearchIcon />
             </div>
@@ -154,7 +167,7 @@ export default function Dashboard(props) {
           </Toolbar>
         </AppBar>
       </div>
-      <div className="drawer">
+      <div>
         <Drawer
           // className="drawwer"
           variant="persistent"
@@ -163,16 +176,37 @@ export default function Dashboard(props) {
         >
           <div>
             <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-              {/* <ChevronRightIcon /> */}
+              <MenuIcon />
             </IconButton>
           </div>
           <Divider />
           <List>
-            {["Notes", "Reminder"].map((text, index) => (
-              <ListItem button key={text}>
+            {["Notes"].map((text, index) => (
+              <ListItem button key={text} onClick={() => {
+                index % 2 === 0 ?
+                  handleNotes()
+                  :
+                  null
+              }
+              }>
                 <ListItemIcon>
-                  {index % 2 === 0 ? < EmojiObjectsIcon /> : <AddAlertIcon />}
+                  <EmojiObjectsIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            {["Reminder"].map((text, index) => (
+              <ListItem button key={text} onClick={() => {
+                index % 2 === 0 ?
+                  handleTrash()
+                  :
+                  null
+              }
+              }>
+                <ListItemIcon>
+                  <AddAlertIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -185,27 +219,48 @@ export default function Dashboard(props) {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
+            {/* <Checkbox /> */}
             <GetAllLabels />
           </List>
 
           <List>
             {["Edit Label"].map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem button key={text} onClick={openEditLabel}>
                 <ListItemIcon>
-                  <CreateIcon onClick={openEditLabel} />
+                  <CreateIcon  />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
             ))}
           </List>
-
-
           <Divider />
           <List>
-            {["Archived", "Trash"].map((text, index) => (
-              <ListItem button key={text}>
+            {["Trash"].map((text, index) => (
+              <ListItem button key={text} onClick={() => {
+                index % 2 === 0 ?
+                  handleTrash()
+                  :
+                  null
+              }
+              }>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <DeleteIcon onClick={togglePopup} />}
+                  <DeleteIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <List>
+            {["Archive"].map((text, index) => (
+              <ListItem button key={text} onClick={() => {
+                index % 2 === 0 ?
+                  handleArchive()
+                  :
+                  null
+              }
+              }>
+                <ListItemIcon>
+                  <ArchiveIcon />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -213,18 +268,9 @@ export default function Dashboard(props) {
           </List>
         </Drawer>
       </div>
-      <div className="main">
-        <CreateNote position="fixed"  />
-        {/* <button onClick={props.function}>Delete note</button> */}
-
-      </div>
       <div>
         <CreateLabel value={openpopup} function={closeEditLabel} />
-        <ListOfTrash value={isopen} function={toggleClose} />
-        <NoteCard />
-
       </div>
-
     </div>
   );
 }

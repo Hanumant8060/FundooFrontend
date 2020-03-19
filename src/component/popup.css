@@ -54,7 +54,8 @@ body {
     cursor: pointer;
     position: absolute;
     right: calc(15% - 30px);
-    top: calc(100vh - 85vh - 33px);
+    /* top: calc(100vh - 85vh - 33px); */
+    margin-top: 5px;
     background: #ededed;
     width: 25px;
     height: 25px;
@@ -65,7 +66,8 @@ body {
     font-size: 20px;
     }
     .done{
-       margin-left: 50px;
+       margin-left: 70px;
        border-spacing: 20px;
+       margin-top: 5px;
         /* padding-left: 50px; */
     }

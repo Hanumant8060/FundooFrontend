@@ -8,8 +8,11 @@ import ForgotPassword from '../component/ForgotPassword'
 import TrashNote from '../component/TrashNote'
 import ListOfTrash from '../component/ListOfTrash'
 import CreateNote from '../component/CreateNote'
+import Maincomponent from '../component/Maincomponent'
+import NoteCard from '../component/NoteCard'
+import ListOfArchiveNotes from '../component/ListOfArchiveNotes'
 
-export default function Router() {
+export default function Router(props) {
     return(
         <BrowserRouter>
             <Route path={'/'} exact component={Login}/>
@@ -18,11 +21,11 @@ export default function Router() {
             <Route path={'/resetPassword'} exact component={ResetPassword}/>
             {/* <Route path= {'/logindemo'} exact component={LoginDemo} /> */}
             {/* <Route path={'/count'} exact component={Counter} /> */}
-            <Route path ={'/forgotPassword'} exact component={ForgotPassword}/>
-            <Route path ={'/dashboard'} exact component={Dashboard}/>
-            <Route path={'/dashboard/note'} exact component={CreateNote}/>
+            <Route path ={'/forgotPassword'}  component={ForgotPassword}/>
+            <Route path ={'/dashboard'} component={Maincomponent}/>
+            <Route path={'/dashboard/note'}  component={NoteCard}/>
             <Route path ={'/dashboard/trash'} exact component={ListOfTrash}/>
-        
+            <Route path ={'/dashboard/archive'} exact component={ListOfArchiveNotes}/>
         </BrowserRouter>
     );
 }

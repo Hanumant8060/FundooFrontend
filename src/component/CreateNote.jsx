@@ -17,7 +17,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import { note } from '../Service/Service';
 import IconList from './IconList';
-import { Card } from '@material-ui/core';
+import { Card, InputBase } from '@material-ui/core';
 
 function CreateNote() {
   const [notein, setNotein] = React.useState({ title: '', desc: '' });
@@ -56,50 +56,15 @@ function CreateNote() {
 
   }
   return (
-    <div>
+    <div style={{marginTop:"95px",marginLeft:"370px",width:"600px"}}>
       <Card>
-        {/* <ClickAwayListener onClickAway={createNote}></ClickAwayListener> */}
-        {/* <div className>
-            <ExpansionPanel defaultExpanded>
-              <ExpansionPanelSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="panel1c-content"
-                id="panel1c-header"
-              >
-                <div className>
-                  <TextField id="standard-basic" placeholder="Take a note" label="Title" />
-                </div>
-              </ExpansionPanelSummary>
-              <ExpansionPanelDetails className>
-                <div className />
-                <div className>
-                  <TextField id="standard-basic" placeholder="Take a note" />
-                  </div>
-                  <div>
-                  <Chip id="chip" label="Barbados" onDelete={() => { }} />
-                </div>
-              </ExpansionPanelDetails>
-              <Divider />
-              <ExpansionPanelActions>
-                <AddAlertIcon />
-                <PersonAddIcon id="icon" />
-                <ImageIcon />
-                <ArchiveIcon id="icon" />
-                <MoreVertIcon />
-                <Button size="small">Cancel</Button>
-                <Button size="small" color="primary">
-                  Create
-          </Button>
-              </ExpansionPanelActions>
-            </ExpansionPanel> */}
-        {/* <div className="expansionpanel"  > */}
         {state ?
-
-          <div className>
-            <TextField
+          <div>
+            <InputBase
               id="standard-input"
               label="Title"
               name="title"
+              placeholder="Title"
               // value={notein.title}
               // onChange={handleChange}
               onChange={handleNote}
@@ -107,10 +72,10 @@ function CreateNote() {
           </div> : null}
 
         <div>
-          <TextField
+          <InputBase
             id="standard-input"
             label="Take a note"
-            // placeholder="Take a note"
+            placeholder="Take a note"
             // onChange={handleChange}
             name="desc"
             // value={notein.desc}
@@ -118,30 +83,16 @@ function CreateNote() {
             type="text"
             onClick={openfile}
           />
-
         </div>
         {state ?
           <div >
             <Chip label="Barbados" onDelete={() => { }} />
             <Divider />
             <Divider />
-            <IconList function={closepanel}  func={createNote}/>
-            {/* <AddAlertIcon />
-                            <PersonAddIcon id="icon" />
-                            <ImageIcon />
-                            <ArchiveIcon id="icon" />
-                            <MoreVertIcon />
-                            <Button size="small">Cancel</Button> */}
-            {/* <Button size="small" onClick={closepanel}> Cancel</Button> */}
-            {/* <Button size="small" color="primary" id="createButton" onClick={createNote}>
-              Create
-             </Button> */}
-
+            <IconList function={closepanel} func={createNote} />
           </div> : null}
-        {/* </div> */}
-
       </Card>
-    </div>
+     </div>
   );
 
 }

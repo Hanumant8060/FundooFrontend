@@ -54,17 +54,13 @@
     display: flex;
     justify-content: flex-end;
   }
-  .main{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end; 
-    flex-direction: row;
-    flex-grow: 1;
+  /* .main{
     width: 700px;
     height: 300px;
     margin-left: 100px;
+   
     
-  }
+  } */
   #notebox{
     width: 500px;
     height: 100px;
@@ -75,6 +71,24 @@
   margin-top:35px;
   align-content: center;
   text-align: center;
+}
+.trashicon{
+  display: none;
+}
+.trashcard{
+  height: 95px;
+   /* alignItems: center; */
+    padding: 10px;
+}
+.trashcard:hover .trashicon{
+  display: block;
+  
+}
+.unarchivecon{
+  display: none;
+}
+.cardarchive:hover .unarchivecon{
+  display: block;
 }
 /* #icon{
   padding-left: 10px;
@@ -91,6 +105,12 @@
   
 
 } */
+.pinicon{
+  display: none;
+}
+.pincard:hover .pinicon{
+  display: block;
+}
 #createButton{
   margin-top: 0px;
   margin-left: 200px;

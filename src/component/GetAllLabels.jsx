@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { getLabels } from '../Service/Service'
-import { ListItemIcon, List, Checkbox } from '@material-ui/core'
+import { ListItemIcon, List, Checkbox, Icon } from '@material-ui/core'
 import LabelIcon from '@material-ui/icons/Label';
 import IconList from './IconList';
 function GetAllLabels() {
@@ -27,16 +27,18 @@ function GetAllLabels() {
                     <div>
                         <List>
                             <ListItemIcon>
-                                {/* <LabelIcon /> */}
-                                <Checkbox/>
+                                <LabelIcon />
+                                {/* <Checkbox/> */}
                                  {label.labelname}
                             </ListItemIcon>
                         </List>
                     </div>
+                  {/* <IconList data ={label.labelId}/> */}
                 </div>
+                
             })
             }
- {/* <IconList getfunction ={getAllLabels}/> */}
+
         </div>
     )
 
