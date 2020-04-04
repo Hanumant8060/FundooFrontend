@@ -11,6 +11,9 @@ import CreateNote from '../component/CreateNote'
 import Maincomponent from '../component/Maincomponent'
 import NoteCard from '../component/NoteCard'
 import ListOfArchiveNotes from '../component/ListOfArchiveNotes'
+import AddReminder from '../component/AddReminder'
+import HooksRef from '../component/HooksRef'
+import  ListOfReminder  from '../component/ListOfReminder'
 
 export default function Router(props) {
     return(
@@ -26,6 +29,7 @@ export default function Router(props) {
             <Route path={'/dashboard/note'}  component={NoteCard}/>
             <Route path ={'/dashboard/trash'} exact component={ListOfTrash}/>
             <Route path ={'/dashboard/archive'} exact component={ListOfArchiveNotes}/>
+            <Route path ={'/dashboard/reminder'} exact component={ListOfReminder}/>
         </BrowserRouter>
     );
 }

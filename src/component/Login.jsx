@@ -3,12 +3,15 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './login.css'
 import Link from '@material-ui/core/Link';
-import {login} from '../Service/Service';
-import { Snackbar } from '@material-ui/core';
+import { login } from '../Service/Service';
+import LockIcon from '@material-ui/icons/Lock';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import PersonIcon from '@material-ui/icons/Person';
+import { Snackbar, ListItemIcon } from '@material-ui/core';
 
 const initialState = {
     name: "",
-    email:"",
+    email: "",
     password: "",
     nameError: "",
     passwordError: "",
@@ -60,81 +63,67 @@ class Login extends Component {
     //         onclick = this.props.history.push('/loginsucess')
     //     }
     // };
-    
-    loginSuccess=()=>{
-        let loginUser={}
+
+    loginSuccess = () => {
+        let loginUser = {}
         loginUser.email = this.state.email
-        loginUser.password= this.state.password
+        loginUser.password = this.state.password
         login(loginUser)
-        .then(Response =>{
-            console.log(Response.data.message)
-           // alert(Response.data.message)
-           sessionStorage.setItem("token",Response.data.result)
-        // localStorage.setItem("token",Response.data.result
-            onclick = this.props.history.push('/dashboard/note')
-        })
-        .catch(error =>{
-            //console.log(error.response.data)
-            alert(error.response.data.message)
-        });
+            .then(Response => {
+                console.log(Response.data.message)
+                // alert(Response.data.message)
+                sessionStorage.setItem("token", Response.data.result)
+                // localStorage.setItem("token",Response.data.result
+                onclick = this.props.history.push('/dashboard/note')
+            })
+            .catch(error => {
+                //console.log(error.response.data)
+                alert(error.response.data.message)
+            });
 
     }
-    render() 
-  {
-    const { vertical, horizontal, open } = this.state;
+    render() {
+        const { vertical, horizontal, open } = this.state;
         return (
             <div className="layout">
                 <div className="align">
                     <form>
                         <table id="table">
                             <h2 id="head">Login</h2>
+                            {/* <div>
+                                <ul class="text">
+                                    <li>L</li>
+                                    <li>O</li>
+                                    <li>G</li>
+                                    <li>I</li>
+                                    <li>N</li>
+                                    <li>n</li>
+                                </ul>
+                            </div> */}
                             <tbody>
                                 <div className="title">
-                                    <tr>
-                                        <td id="text">
-                                            <TextField required id="standard-required" label="Required" placeholder="Username/Email" type="text" label="Username" name="email" value={this.state.email}
-                                                onChange={this.handleChange} />
-                                            {/* <h3 style={{ fontSize: 12, color: "red" }}>
-                                                {this.state.nameError}
-                                            </h3> */}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <TextField required id="standard-required" label="Required" placeholder="Password" label="Password"
-                                                type="password" name="password" value={this.state.password}
-                                                onChange={this.handleChange} />
-                                            {/* <h3 style={{ fontSize: 12, color: "red" }}>
-                                                {this.state.passwordError}
-                                            </h3> */}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td id="button">
-                                            <Button variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
-                                            {/* <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        key={`${vertical},${horizontal}`}
-        open
-        autoOpenDuration={90000000000000}
-        onClose={handleClose}
-        message="I love snacks"
-      /> */}
-                                        </td>
-                                        <td>
-                                            <Button variant="contained" color="secondary" onClick={
-                                                () => this.props.history.push('/register')}
+                                    <ListItemIcon style={{ marginTop: "20px" }}>
+                                        <PersonIcon />
+                                    </ListItemIcon>
+                                    <TextField style={{ width: "250px" }} required id="standard-required" label="Required" placeholder="Username/Email" type="text" label="Username" name="email" value={this.state.email}
+                                        onChange={this.handleChange} />
+                                    <ListItemIcon style={{ marginTop: "20px" }}>
+                                        <LockIcon />
+                                    </ListItemIcon>
+                                    <TextField style={{ width: "250px" }} required id="standard-required" label="Required" placeholder="Password" label="Password"
+                                        type="password" name="password" value={this.state.password}
+                                        onChange={this.handleChange} />
+                                    <VisibilityOffIcon color="disabled" />
+                                    <Button style={{ marginTop: "60px", paddingLeft: "20px" }} variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
+                                    <Button style={{ marginTop: "60px", paddingLeft: "20px", marginLeft: "90px", color: "pink" }} variant="contained" color="secondary" onClick={
+                                        () => this.props.history.push('/register')}
 
-                                            > Register </Button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <Link href="" onClick={
-                                            () => this.props.history.push('/forgotPassword')
-                                        }>
-                                            forgot password?
+                                    > Register </Button>
+                                    <Link style={{ marginLeft: "32px", marginTop: "3px", paddingLeft: "-10px" }} href="" onClick={
+                                        () => this.props.history.push('/forgotPassword')
+                                    }>
+                                        forgot password?
                                  </Link>
-                                    </tr>
                                 </div>
                             </tbody>
                         </table>

@@ -6,7 +6,7 @@ import ArchiveIcon from '@material-ui/icons/Archive';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List'
-import { ListItemIcon, Checkbox, ButtonGroup } from '@material-ui/core'
+import { ListItemIcon, Checkbox, ButtonGroup, Tooltip } from '@material-ui/core'
 import { Menu, MenuItem } from '@material-ui/core'
 import { deletenote, note, addLabel } from '../Service/Service';
 import DeleteNote from './DeleteNote';
@@ -18,7 +18,11 @@ import TrashNote from './TrashNote'
 import ArchievedNote from './ArchievedNote';
 import AddLabelToNote from './AddLabelToNote'
 import DateTimePicker from 'react-datetime-picker/dist/DateTimePicker';
+import Greeting from './Greeting'
 import Copy from './Copy';
+import AddCollaborator from './AddCollaborator';
+import Getrequest from './Getrequest';
+import AddReminder from './AddReminder';
 
 export default function IconList(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -62,24 +66,29 @@ export default function IconList(props) {
     const open = Boolean(popper);
     return (
         <List>
-            <ListItemIcon><Copy function={handleClick2} /></ListItemIcon>
+        <ListItemIcon><AddReminder data={props.data} function={handleClick2} /></ListItemIcon>
             <Menu
                 anchorEl={anchorE2}
                 keepMounted
                 open={Boolean(anchorE2)}
                 onClose={handleClose2}
             >
-                <div style={{ width: "80%", position: "relative" }}>
-                    <MenuItem><DateTimePicker value={date} onChange={() => setDate(date)} />
+                <div style={{ width: "500px", position: "relative" }}>
+                    <MenuItem><AddReminder style={{ width: "500px", position: "relative" }} value={date} onChange={() => setDate(date)} />
                         <Button size="small" >Set</Button>
                     </MenuItem></div>
 
             </Menu>
-            <ListItemIcon><PersonAddIcon /></ListItemIcon>
-            <ListItemIcon> <ImageIcon /></ListItemIcon>
+            <ListItemIcon>
+                <Tooltip title="Collaborator">
+                    {/* <PersonAddIcon /> */}
+                    <AddCollaborator data ={props.data}/>
+                </Tooltip></ListItemIcon>
+            <ListItemIcon><Tooltip title="add Image"><ImageIcon /></Tooltip></ListItemIcon>
             <ArchievedNote data={props.data} />
             {/* <ListItemIcon><ArchiveIcon /></ListItemIcon> */}
-            <ListItemIcon><MoreVertIcon onClick={handleClick} /></ListItemIcon>
+            <ListItemIcon>
+                <Tooltip title="more"><MoreVertIcon onClick={handleClick} /></Tooltip></ListItemIcon>
 
             <Menu
                 anchorEl={anchorEl}

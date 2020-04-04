@@ -1,35 +1,33 @@
-import React, { Component } from 'react';
-import axios from 'axios'
-class Getrequest extends Component {
-    constructor(props){
-        super(props);
-        this.state ={
-            posts:[]
-        }
-    }
-    componentDidMount(){
-        axios.get("https://jsonplaceholder.typicode.com/posts")
-        .then(response =>{
-            this.setState({posts:response.data})
-            console.log(response)
-           // alert(response.data.title)
-        })
-        .catch(error =>{
-            console.log(error)
-        })
+import React from "react";
+// import "./styles.css";
 
+export default function App() {
+  const handleImageUpload = e => {
+    const [file] = e.target.files;
+    if (file) {
+      console.log(file);
     }
-    render() {
-        const {posts} = this.state
-        return (
-            <div>
-                 List of Posts:{
-                     posts.length?
-                     posts.map(post =><div key={post.id}>{post.title}</div>):null
-                 }
-            </div>
-        );
-    }
+  };
+
+  return (
+    <div className="App">
+      <input type="file" accept="image/*" onChange={handleImageUpload} multiple = "false" />
+      <div
+        style={{
+          height: "60px",
+          width: "60px",
+          border: "1px dashed black"
+        }}
+      >
+        <img
+          style={{
+            width: "100%",
+            height: "100%",
+            position: "absolute"  
+          }}
+          alt="hello"
+        />
+      </div>
+    </div>
+  );
 }
-
-export default Getrequest;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { deletenote } from '../Service/Service';
-import Example from './Example';
+// import Example from './Example';
 import IconList from './IconList';
 import Dashboard from './Dashboard';
 import { MenuItem } from '@material-ui/core';

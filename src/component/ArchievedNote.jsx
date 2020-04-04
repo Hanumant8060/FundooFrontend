@@ -1,5 +1,5 @@
 import React from 'react'
-import { ListItemIcon } from '@material-ui/core'
+import { ListItemIcon, Tooltip } from '@material-ui/core'
 import ArchiveIcon from '@material-ui/icons/Archive';
 import { archived } from '../Service/Service'
 export default function ArchievedNote(props) {
@@ -17,7 +17,8 @@ export default function ArchievedNote(props) {
     }
     return (
         <ListItemIcon>
-            <ArchiveIcon onClick={() => noteArchived(props.data)}></ArchiveIcon>
+            <Tooltip title="Archive">
+            <ArchiveIcon onClick={() => noteArchived(props.data)}></ArchiveIcon></Tooltip>
         </ListItemIcon>
     )
 }

@@ -20,6 +20,14 @@
     margin-bottom: 10px;
     
 }
+#text{
+    margin-left: 20px;
+}
+#head{
+    font-weight: 60px;
+    font-size: 40px;
+    font-style: oblique;
+}
 .layout{
     align-items: center;
     border-width: 10px;

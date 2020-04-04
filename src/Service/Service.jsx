@@ -133,18 +133,39 @@ export function listOfTrash() {
             }
         });
 }
-export function addReminder(time,int){
-    return axios.post("http://localhost:8080/note/addReminder",int,{
+export function addReminder(time,note){
+    return axios.post("http://localhost:8080/note/addReminder",{time,note},{
         headers:{
             "Content-Type": "application/json;charset=utf-8",
             "token": sessionStorage.getItem('token'),
-            "time":time
-            
         },params:{
-            "noteId":int
+            "noteId":note,
+            "time":time
         }
-
     })
+}
+
+export function removeReminder(noteid){
+    return axios.post("http://localhost:8080/note/removeReminder",noteid,{
+        params:{
+            noteId:noteid
+        },
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+                "token": sessionStorage.getItem('token')
+            }
+        });
+
+}
+
+export function listOfReminder() {
+    return axios.get("http://localhost:8080/note/listOfReminder"
+        , {
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+                "token": sessionStorage.getItem('token')
+            }
+        });
 }
 export function listOfArchive() {
     return axios.get("http://localhost:8080/note/listOfArchive"
@@ -189,4 +210,47 @@ export function deletefromtrash(noteid){
             }
         });
 
+}
+export function collaborate(noteid ,email1){
+    console.log("noteid==>",noteid,"email===>",email1);
+    
+    return axios.post("http://localhost:8080/note/collaborator",{noteid, email1},{
+        params:{
+            noteId:noteid,
+            email:email1
+
+        },
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+                "token": sessionStorage.getItem('token')
+            }
+        });
+
+}
+ export function getCollaboratorList(){
+    //  console.log("noteid",noteid);
+     
+    return axios.get("http://localhost:8080/note/getCollabList",{
+        // params:{
+        //     noteId:noteid
+
+        // },
+            headers: {
+                "Content-Type": "application/json;charset=utf-8",
+                "token": sessionStorage.getItem('token')
+            }
+        });
+
+
+ }
+ export function pin(noteid){
+    return axios.post("http://localhost:8080/note/pin",noteid,{
+    params:{
+        noteId:noteid
+    },
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+            "token": sessionStorage.getItem('token')
+        }
+    });
 }
