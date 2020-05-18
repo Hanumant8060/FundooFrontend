@@ -3,13 +3,16 @@ import Card from '@material-ui/core/Card';
 import { ListItemIcon } from '@material-ui/core'
 import { getNotes } from '../Service/Service'
 import IconList from './IconList';
-import {pin} from '../Service/Service' 
+import { pin } from '../Service/Service'
 import { Divider, Tooltip } from '@material-ui/core';
 import CreateNote from './CreateNote';
+
+
 function NoteCard(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [listNote, setListNote] = useState([])
     const [pin1, setPin] = React.useState(true)
+
     useEffect(() => {
         getAllNotes()
     }
@@ -18,21 +21,20 @@ function NoteCard(props) {
     const openPin = () => {
         setPin(false)
         console.log(pin1, "state");
-
     }
+
     const closePin = () => {
         setPin(true)
     }
-    const pinNote=(noteid)=>{
+
+    const pinNote = (noteid) => {
         pin(noteid)
-        .then(response => {
-            // setListNote(response.data)
-            console.log("response ---->", response.data)
-            setPin(noteid===false)
-        }).catch(error => {
-            console.log("error ---->", error)
-        })
-        
+            .then(response => {
+                console.log("response ---->", response.data)
+                setPin(noteid === false)
+            }).catch(error => {
+                console.log("error ---->", error)
+            })
     }
 
     const getAllNotes = () => {
@@ -51,7 +53,6 @@ function NoteCard(props) {
                 {listNote.map(o =>
                     <div style={{ marginTop: '50px', marginBottom: '5px', marginLeft: '300px', width: '25%' }}>
                         <Card className="pincard" style={{ height: "140px", borderRadius: "4px" }} >
-
                             <div className="pinicon" >
                                 {o.note_title}
                                 {pin1 ?
@@ -73,15 +74,12 @@ function NoteCard(props) {
                                 {o.note_disc}
                             </div>
                             <Divider />
-
                             <IconList data={o.noteId} />
                         </Card>
-
                     </div>
                 )}
             </div>
         </div>
     )
-
 }
 export default NoteCard;

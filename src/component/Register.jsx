@@ -15,6 +15,7 @@ const initialState = {
   emailError: "",
   passwordError: ""
 };
+
 class Register extends Component {
   state = initialState
 

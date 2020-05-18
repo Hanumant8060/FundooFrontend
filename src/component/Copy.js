@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import DateTimePicker from 'react-datetime-picker';
 import { addReminder } from '../Service/Service';
-import { ListItemIcon, MenuItem, Button, Tooltip } from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 
 
@@ -19,20 +18,14 @@ class Copy extends Component {
       console.log("error ---->", error.message)
     })
   }
+
   render() {
     return (
       <div>
-        {/* <DateTimePicker
-          onChange={this.onChange}
-          value={this.state.date}
-        /> */}
         <div>
-          <Tooltip title ="Remind me">
-          <AddAlertIcon onClick={this.props.function}></AddAlertIcon>
+          <Tooltip title="Remind me">
+            <AddAlertIcon onClick={this.props.function}></AddAlertIcon>
           </Tooltip>
-          {/* <MenuItem><DateTimePicker value={this.date} onChange={this.onChange}/>
-                    <Button size="small" >Set</Button>
-                    </MenuItem> */}
         </div>
       </div>
     );

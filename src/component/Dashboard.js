@@ -1,8 +1,7 @@
 /* eslint-disable*/
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
-import AccountCircle from '@material-ui/icons/AccountCircle'
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -25,26 +24,23 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import './dashboard.css'
 import ak from './image/ak.png'
+import { post } from 'axios';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import CreateLabel from './CreateLabel';
 import GetAllLabels from './GetAllLabels';
 import Avatar from '@material-ui/core/Avatar'
-import AccountBoxOutlinedIcon from '@material-ui/icons/AccountBoxOutlined';
+import Practice from './Pratice';
 
 
 export default function Dashboard(props) {
   const [open, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // const [isopenn, setisOpen] = React.useState(false);
   const [isopen, setIsOpen] = React.useState(false);
   const [openpopup, setOpenPopup] = React.useState(false);
   const openn = Boolean(anchorEl);
 
-  console.log(props, "props");
-
   const openEditLabel = () => {
     setOpenPopup(true);
-    console.log(openpopup, "state");
   }
   const closeEditLabel = () => {
     setOpenPopup(false);
@@ -52,7 +48,6 @@ export default function Dashboard(props) {
 
   const togglePopup = () => {
     setIsOpen(true)
-    console.log("value of isopen ", isopen)
   };
 
   const toggleClose = () => {
@@ -60,15 +55,27 @@ export default function Dashboard(props) {
     console.log(isopen)
   };
 
-  // const togglePopup1 = () => {
-  //   setisOpen(true)
-  //   console.log("value of isopenn ",isopenn)
-  // };
+  const onFormSubmit = (e) => {
+    e.preventDefault()
+    fileUpload(file).then((response) => {
+      console.log(response.data);
+    })
+  }
 
-  // const handleClose1 = () => {
-  //   setisOpen(false);
-  //   console.log(isopenn)
-  // };
+  const fileUpload = (file) => {
+    const url = 'http://localhost:8080/home/uplaodImage';
+    const formData = new FormData();
+    formData.append('file', file)
+    const config = {
+      headers: {
+        contentType: 'application/json',
+        'token': sessionStorage.getItem('token'),
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'PUT,POST,DELETE'
+      }
+    }
+    return post(url, formData.name, config)
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -94,6 +101,7 @@ export default function Dashboard(props) {
   const handleReminder = () => {
     props.data.history.push('/dashboard/reminder')
   }
+
 
 
   return (
@@ -123,14 +131,13 @@ export default function Dashboard(props) {
             <div>
               <SettingsIcon id="setting" />
             </div>
-            {/* <div>
-              <svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation"><path d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"></path></svg>
-              </div> */}
             <div>
               <IconButton
                 onClick={handleMenu}
                 color="inherit">
-                <Avatar className="account"><AddAPhotoOutlinedIcon style={{padding:"10px",marginLeft:"20px",marginTop:"10px"}}/></Avatar>
+                <Avatar className="account" alt={name}
+                  src={localStorage.getItem("profilepicture")}><AddAPhotoOutlinedIcon style={{ padding: "10px", marginLeft: "20px", marginTop: "10px" }} />
+                </Avatar>
               </IconButton>
               <Menu
                 id="menu-appbar"
@@ -141,8 +148,7 @@ export default function Dashboard(props) {
                 }}
                 open={openn}
                 onClose={handleMenuClose}
-              >
-                <MenuItem >Profile</MenuItem>
+              ><Practice />
                 <MenuItem onClick={handleMenuClose}>My account</MenuItem>
               </Menu>
             </div>
@@ -182,7 +188,7 @@ export default function Dashboard(props) {
             {["Reminder"].map((text, index) => (
               <ListItem button key={text} onClick={() => {
                 index % 2 === 0 ?
-                 handleReminder()
+                  handleReminder()
                   :
                   null
               }
@@ -201,10 +207,8 @@ export default function Dashboard(props) {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-            {/* <Checkbox /> */}
             <GetAllLabels />
           </List>
-
           <List className="over">
             {["Edit Label"].map((text, index) => (
               <ListItem button key={text} onClick={openEditLabel}>
@@ -255,14 +259,11 @@ export default function Dashboard(props) {
                 Terms and conditions
               </Link>
               <Link href="#" color="inherit">
-               
               </Link>
               <Link href="#" variant="body2">
-
               </Link>
             </Typography>
           </List>
-          {/* <img src={corona}/> */}
         </Drawer>
       </div>
       <div>

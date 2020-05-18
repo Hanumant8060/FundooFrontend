@@ -7,7 +7,7 @@ import { login } from '../Service/Service';
 import LockIcon from '@material-ui/icons/Lock';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import PersonIcon from '@material-ui/icons/Person';
-import { Snackbar, ListItemIcon } from '@material-ui/core';
+import { ListItemIcon } from '@material-ui/core';
 
 const initialState = {
     name: "",
@@ -23,46 +23,11 @@ class Login extends Component {
     state = initialState;
 
     handleChange = event => {
-        // const isCheckbox = event.target.type === "checkbox";
         this.setState({
             [event.target.name]
                 : event.target.value
         });
     };
-
-
-    // validate = () => {
-    //     let nameError = "";
-    //     let passwordError = "";
-
-    //     if (!this.state.name) {
-    //         nameError = "name cannot be blank";
-    //     }
-
-    //     if (!this.state.password.includes("@")) {
-    //         passwordError = "invalid password";
-    //     }
-
-    //     if (passwordError || nameError) {
-    //         this.setState({ passwordError, nameError });
-    //         return false;
-    //     }
-
-    //     return true;
-    // };
-
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     const isValid = this.validate();
-    //     if (!isValid) {
-    //         alert("login failed please enter valid name/password ")
-    //         console.log(this.state);
-    //         this.setState(initialState);
-    //     }
-    //     else {
-    //         onclick = this.props.history.push('/loginsucess')
-    //     }
-    // };
 
     loginSuccess = () => {
         let loginUser = {}
@@ -70,14 +35,11 @@ class Login extends Component {
         loginUser.password = this.state.password
         login(loginUser)
             .then(Response => {
-                console.log(Response.data.message)
-                // alert(Response.data.message)
+                console.log(Response.data)
                 sessionStorage.setItem("token", Response.data.result)
-                // localStorage.setItem("token",Response.data.result
                 onclick = this.props.history.push('/dashboard/note')
             })
             .catch(error => {
-                //console.log(error.response.data)
                 alert(error.response.data.message)
             });
 
@@ -90,16 +52,6 @@ class Login extends Component {
                     <form>
                         <table id="table">
                             <h2 id="head">Login</h2>
-                            {/* <div>
-                                <ul class="text">
-                                    <li>L</li>
-                                    <li>O</li>
-                                    <li>G</li>
-                                    <li>I</li>
-                                    <li>N</li>
-                                    <li>n</li>
-                                </ul>
-                            </div> */}
                             <tbody>
                                 <div className="title">
                                     <ListItemIcon style={{ marginTop: "20px" }}>
@@ -117,7 +69,6 @@ class Login extends Component {
                                     <Button style={{ marginTop: "60px", paddingLeft: "20px" }} variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
                                     <Button style={{ marginTop: "60px", paddingLeft: "20px", marginLeft: "90px", color: "pink" }} variant="contained" color="secondary" onClick={
                                         () => this.props.history.push('/register')}
-
                                     > Register </Button>
                                     <Link style={{ marginLeft: "32px", marginTop: "3px", paddingLeft: "-10px" }} href="" onClick={
                                         () => this.props.history.push('/forgotPassword')
@@ -131,8 +82,6 @@ class Login extends Component {
                 </div>
             </div>
         );
-
     }
-
 }
 export default Login;

@@ -18,28 +18,15 @@ class ForgotPassword extends Component {
         forgot.email = this.state.email
         passWordForgot(forgot)
             .then(Response => {
-                //console.log(Response.data.message)
                 alert(Response.data.message)
-                //  onclick=this.props.history.push('/resetPassword')
-
             })
             .catch(error => {
                 console.log(error.response.data)
                 alert(error.response.data.message)
             });
-
     }
+
     render() {
-        const mystyle = {
-            color: "white",
-            align: "center",
-            width: "200px",
-            height: "0px",
-            origin: "padding-box",
-            padding: "10px",
-            margin: "20px",
-            fontFamily: "Arial"
-        };
         return (
             <div className="forgot">
                 <label>E-mail Id:</label><br />

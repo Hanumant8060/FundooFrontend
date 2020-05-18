@@ -23,21 +23,18 @@ function ListOfArchiveNotes() {
             })
     }
 
-    const unarchivenote=(noteid)=>{
+    const unarchivenote = (noteid) => {
         console.log("unarchive");
-        
+
         unarchive(noteid)
-        .then(response => {
-            // setListArchiveNote(response.data)
-            console.log("response ---->", response.data)
-        }).catch(error => {
-            console.log("error ---->", error)
-        })
-
-
+            .then(response => {
+                console.log("response ---->", response.data)
+            }).catch(error => {
+                console.log("error ---->", error)
+            })
     }
-    return (
 
+    return (
         <div style={{ marginTop: "100px" }}>
             <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
                 {listArchiveNote.map(o =>
@@ -50,9 +47,8 @@ function ListOfArchiveNotes() {
                                 {o.note_disc}
                             </div>
                             <div className="unarchivecon">
-                                <ListItemIcon style={{ marginLeft: "15px", marginTop: "20px" }}><UnarchiveIcon onClick={()=>unarchivenote(o.noteId)} /></ListItemIcon>
+                                <ListItemIcon style={{ marginLeft: "15px", marginTop: "20px" }}><UnarchiveIcon onClick={() => unarchivenote(o.noteId)} /></ListItemIcon>
                             </div>
-
                         </Card>
                     </div>
                 )}

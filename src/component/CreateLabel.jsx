@@ -1,5 +1,4 @@
 import React from 'react'
-import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Popover from '@material-ui/core/Popover';
@@ -18,19 +17,14 @@ export default function CreateLabel(props) {
       .then(Response => {
         console.log(Response.data.message)
         alert(Response.data.message)
-        // onclick = this.props.history.push('/dashboard')
       }).catch(error => {
         console.log(error, "error")
-        alert(error.response.data.message)
       });
   }
 
   return (
     <div>
       <div>
-        {/* <MenuItem variant="contained" color="primary" onClick={props.handlepoPper}>
-          Create label
-            </MenuItem> */}
         <Popover
           open={props.openn}
           anchorEl={props.data}
@@ -52,7 +46,7 @@ export default function CreateLabel(props) {
           handleClose={props.function}
         />}
       </div>
-      
+
     </div>
   )
 }

@@ -16,71 +16,36 @@ class ResetPassword extends Component {
         }
     }
 
-
-    // validate = () => {
-    //     let emailError = "";
-    //     let passwordError = "";
-
-    //     if (!this.state.email.includes("@")) {
-    //         emailError = "invalid email"
-    //     }
-    //     if (!this.state.password.match("(?=.*[0-9])")) {
-    //         alert(passwordError = "password must contain one digit")
-    //     }
-
-    //     if (emailError || passwordError) {
-    //         this.setState({ emailError, passwordError });
-    //         return false;
-    //     }
-
-    //     return true;
-    // };
-    // handleSubmit = event => {
-    //     event.preventDefault();
-    //     const isValid = this.validate();
-    //     if (!isValid) {
-    //         //alert(" please enter valid email/password")
-    //         console.log(this.state);
-    //         // clear form
-    //         this.setState(initialState);
-    //     }
-    //     else {
-    //         onclick = this.props.history.push('/')
-    //     }
-    // }
     handleChange = (event) => {
-        // const isCheckbox = event.target.type === "checkbox";
         this.setState({
             [event.target.name]
                 : event.target.value
         });
     };
+
     resetPassWord = () => {
         let reset = {}
         reset.email = this.state.email
         reset.password = this.state.password
         reset.confirm_password = this.state.confirm_password
         resetPassword(reset)
-        .then(Response =>{
-            console.log(Response);
-            
-        })
-        .catch(error =>{
-            console.log(error);
-        })
+            .then(Response => {
+                console.log(Response);
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     render() {
-
         return (
             <div className="align">
                 <form>
                     <h2>Reset password</h2>
                     <div className="form-row">
                         <label>E-mail Id</label>
-
                         <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange} />
-
                     </div>
                     <div className="form-row">
                         <label>Old PassWord</label>

@@ -2,14 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Popover from "@material-ui/core/Popover";
-// import "../Cssfile/addReminder.css";
-// import Datetimepicker from "./Datetimepicker";
-import {  Tooltip } from "@material-ui/core";
+import { Tooltip } from "@material-ui/core";
 import AddAlertOutlinedIcon from "@material-ui/icons/AddAlertOutlined";
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
-import Button from '@material-ui/core/Button';
-import { Divider, IconButton } from "@material-ui/core";
 import Greeting from './Greeting'
 
 const styles = theme => ({
@@ -24,8 +18,8 @@ class SimplePopover extends React.Component {
 
     this.state = {
       usernoteid: "",
-      opensnackbar:false,
-      reminders:''
+      opensnackbar: false,
+      reminders: ''
 
     };
   }
@@ -34,10 +28,10 @@ class SimplePopover extends React.Component {
     anchorEl: null
   };
 
-  handleReminder1=(reminder1)=>{
-    this.setState({reminders:reminder1})
-    
- }
+  handleReminder1 = (reminder1) => {
+    this.setState({ reminders: reminder1 })
+
+  }
   handleClick = event => {
     let noteid = this.props.propsRemindernote;
     this.setState({ usernoteid: noteid });
@@ -50,31 +44,25 @@ class SimplePopover extends React.Component {
 
   handleClose1 = () => {
     this.setState({
-      opensnackbar:false    });
+      opensnackbar: false
+    });
   };
 
   handleClose = () => {
     this.setState({
       anchorEl: null
     });
-   
-
-
   };
 
   render() {
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    
-
     return (
       <div  >
         <Tooltip title="Remind me">
           <AddAlertOutlinedIcon onClick={this.handleClick} />
         </Tooltip>
-
         <Popover
-        
           id="simple-popper"
           open={open}
           anchorEl={anchorEl}
@@ -91,7 +79,7 @@ class SimplePopover extends React.Component {
             <div
               onClick={this.handleClose}
               className
-              style={{ fontSize:"18px" }}
+              style={{ fontSize: "18px" }}
             >
               Reminder :
             </div>
@@ -99,19 +87,17 @@ class SimplePopover extends React.Component {
               <div> Later today</div>
               <div>8:00 PM</div>
             </div>
-
-            <div className="today"   onClick={this.handleClose}>
+            <div className="today" onClick={this.handleClose}>
               <div>Tomorrow</div>
               <div>8:00 PM</div>
             </div>
-
-            <div className="today"   onClick={this.handleClose}>
+            <div className="today" onClick={this.handleClose}>
               <div>Next week</div>
               <div>Mon,8:00 PM</div>
             </div>
           </div>
           <Greeting value={this.props.data}
-              onClick={this.handleClose}
+            onClick={this.handleClose}
             propsnoteid={this.state.usernoteid}
             refresh1={this.props.refresh}
             onSelectReminder1={this.handleReminder1}
