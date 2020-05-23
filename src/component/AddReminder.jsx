@@ -35,8 +35,6 @@ class SimplePopover extends React.Component {
   handleClick = event => {
     let noteid = this.props.propsRemindernote;
     this.setState({ usernoteid: noteid });
-    console.log("noteid" + noteid);
-
     this.setState({
       anchorEl: event.currentTarget
     });

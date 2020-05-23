@@ -6,11 +6,11 @@ import KeyboardReturnIcon from '@material-ui/icons/KeyboardReturn';
 
 const initialState = {
   username: "",
-  firstname:"",
-  lastname:"",
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
-  confirm_password:"",
+  confirm_password: "",
   nameError: "",
   emailError: "",
   passwordError: ""
@@ -26,29 +26,29 @@ class Register extends Component {
     });
   };
 
-  newRegistration=()=>{
-    let registeration={}
-    registeration.username=this.state.name
-    registeration.firstname= this.state.firstname
-    registeration.lastname= this.state.lastname
-    registeration.email=this.state.email
-    registeration.password=this.state.password
-    registeration.confirm_password=this.state.confirm_password
+  newRegistration = () => {
+    let registeration = {}
+    registeration.username = this.state.name
+    registeration.firstname = this.state.firstname
+    registeration.lastname = this.state.lastname
+    registeration.email = this.state.email
+    registeration.password = this.state.password
+    registeration.confirm_password = this.state.confirm_password
     registration(registeration)
-    .then(Response =>{
-      onclick = this.props.history.push('/')
-  })
-  .catch(error =>{
-      console.log(error.response.data)
-      alert(error.response.data.message)
-  });
- }
+      .then(Response => {
+        onclick = this.props.history.push('/')
+      })
+      .catch(error => {
+        console.log(error.response.data)
+        alert(error.response.data.message)
+      });
+  }
 
   render() {
     return (
       <div className="align">
         <form>
-          <h2 style={{fontSize:"25px",fontStyle:"Italic"}}>REGISTRATION</h2>
+          <h2 style={{ fontSize: "25px", fontStyle: "Italic" }}>REGISTRATION</h2>
           <div className="form-row">
             <label>UserName</label>
             <input type="text" placeholder="Username" name="username" value={this.state.name}
@@ -61,7 +61,7 @@ class Register extends Component {
           </div>
           <div className="form-row">
             <label>LastName</label>
-            <input type="text" placeholder="Lastname"  name = "lastname" value={this.state.lastname}  onChange={this.handleChange} required  ></input>
+            <input type="text" placeholder="Lastname" name="lastname" value={this.state.lastname} onChange={this.handleChange} required  ></input>
           </div>
           <div className="form-row">
             <label>Email-Id</label>
@@ -79,14 +79,13 @@ class Register extends Component {
               onChange={this.handleChange} required ></input>
           </div>
           <div className="form-row">
-          <h6 style={{marginLeft:"10px"}}> Back To Login?</h6>
-            <KeyboardReturnIcon  id="backicon" onClick={() => this.props.history.push('/')} ></KeyboardReturnIcon>
+            <h6 style={{ marginLeft: "10px" }}> Back To Login?</h6>
+            <KeyboardReturnIcon id="backicon" onClick={() => this.props.history.push('/')} ></KeyboardReturnIcon>
             <Button variant="contained" color="inherit"
               onClick={this.newRegistration}>Register</Button>
           </div>
         </form>
       </div>
-
     )
   }
 }

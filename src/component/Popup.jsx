@@ -1,23 +1,22 @@
 import React from "react";
 import './popup.css';
-import GetAllLabels from "./GetAllLabels";
+
 
 const Popup = (props) => {
-    console.log('--->', props.handleClose);
 
     const closePopUp = () => {
-        console.log('in close function');
         props.handleClose()
     }
 
     return (
-        <div className="popup-box">
-            <div className="box">
-                <button type='submit' className="close-icon" onClick={closePopUp}>x</button>
-                {props.content}
-                <GetAllLabels/>
-            </div>   
-        </div>
+        <div>
+            <div className="popup-box">
+                <div className="box">
+                    <button type='submit' className="close-icon" onClick={closePopUp}>x</button>
+                    {props.content}
+                </div>
+            </div>
+        </div >
     );
 };
 

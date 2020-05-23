@@ -2,13 +2,11 @@ import React, { useEffect } from 'react'
 import { listOfArchive, unarchive } from '../Service/Service'
 import { Card, ListItemIcon } from '@material-ui/core';
 import UnarchiveIcon from '@material-ui/icons/Unarchive';
-import IconList from './IconList';
-import RestoreFromTrashIcon from '@material-ui/icons/RestoreFromTrash';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import './dashboard.css'
 
 function ListOfArchiveNotes() {
     const [listArchiveNote, setListArchiveNote] = React.useState([]);
+
     useEffect(() => {
         getAllArchiveNotes()
     }, [])
@@ -17,20 +15,19 @@ function ListOfArchiveNotes() {
         listOfArchive()
             .then(response => {
                 setListArchiveNote(response.data)
-                console.log("response ---->", response.data)
+                console.log(response.data)
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 
     const unarchivenote = (noteid) => {
-        console.log("unarchive");
-
         unarchive(noteid)
             .then(response => {
-                console.log("response ---->", response.data)
+                console.log(response.data)
+                getAllArchiveNotes();
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 

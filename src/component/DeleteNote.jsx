@@ -17,7 +17,6 @@ function DeleteNote(props) {
         console.log(error, "error")
         alert(error.response.data.message)
       });
-
   }
 
   return (

@@ -17,18 +17,18 @@ function ListOfReminder() {
         listOfReminder()
             .then(response => {
                 setListReminderNote(response.data)
-                console.log("response ---->", response.data)
+                console.log(response.data)
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 
     const remove = (noteid) => {
         removeReminder(noteid)
             .then(response => {
-                console.log("response ---->", response.data)
+                console.log(response.data)
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 

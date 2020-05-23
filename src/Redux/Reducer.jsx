@@ -12,10 +12,6 @@ const initialState = {
   };
   const Reducer = (State = initialState, action) => {
     switch (action.type) {
-
-
-       
-    
         case ADD_COLOR: {
           return {
             ...State,

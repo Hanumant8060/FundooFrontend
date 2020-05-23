@@ -6,21 +6,32 @@ import Link from '@material-ui/core/Link';
 import { login } from '../Service/Service';
 import LockIcon from '@material-ui/icons/Lock';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import PersonIcon from '@material-ui/icons/Person';
 import { ListItemIcon } from '@material-ui/core';
+
 
 const initialState = {
     name: "",
     email: "",
     password: "",
-    nameError: "",
-    passwordError: "",
-    open: false,
-    vertical: 'top',
-    horizontal: 'center',
+    showPassword: true
 };
 class Login extends Component {
     state = initialState;
+
+    handlePassword = () => {
+        this.setState({
+            showPassword: false
+        })
+    }
+
+    handlePasswordChange = () => {
+        this.setState({
+            showPassword: true
+        })
+    }
+
 
     handleChange = event => {
         this.setState({
@@ -45,7 +56,6 @@ class Login extends Component {
 
     }
     render() {
-        const { vertical, horizontal, open } = this.state;
         return (
             <div className="layout">
                 <div className="align">
@@ -54,23 +64,24 @@ class Login extends Component {
                             <h2 id="head">Login</h2>
                             <tbody>
                                 <div className="title">
-                                    <ListItemIcon style={{ marginTop: "20px" }}>
+                                    <ListItemIcon style={{ marginTop: "20px", marginLeft: "19px" }}>
                                         <PersonIcon />
                                     </ListItemIcon>
                                     <TextField style={{ width: "250px" }} required id="standard-required" label="Required" placeholder="Username/Email" type="text" label="Username" name="email" value={this.state.email}
                                         onChange={this.handleChange} />
-                                    <ListItemIcon style={{ marginTop: "20px" }}>
+                                    <ListItemIcon style={{ marginTop: "30px", marginLeft: "20px" }}>
                                         <LockIcon />
                                     </ListItemIcon>
                                     <TextField style={{ width: "250px" }} required id="standard-required" label="Required" placeholder="Password" label="Password"
-                                        type="password" name="password" value={this.state.password}
+                                        type={this.state.showPassword ? "password" : "text"} name="password" value={this.state.password}
                                         onChange={this.handleChange} />
-                                    <VisibilityOffIcon color="disabled" />
-                                    <Button style={{ marginTop: "60px", paddingLeft: "20px" }} variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
-                                    <Button style={{ marginTop: "60px", paddingLeft: "20px", marginLeft: "90px", color: "pink" }} variant="contained" color="secondary" onClick={
+                                    {this.state.showPassword ? <VisibilityOffIcon color="disabled" onClick={this.handlePassword} /> : <VisibilityIcon color="disabled" onClick={this.handlePasswordChange} />}
+                                    <Button style={{ marginTop: "60px", paddingLeft: "20px", marginLeft: "20px" }} variant="contained" color="primary" onClick={this.loginSuccess}>Login</Button>
+                                
+                                    <Button style={{ marginTop: "60px", paddingLeft: "20px", marginLeft: "120px", color: "pink" }} variant="contained" color="secondary" onClick={
                                         () => this.props.history.push('/register')}
                                     > Register </Button>
-                                    <Link style={{ marginLeft: "32px", marginTop: "3px", paddingLeft: "-10px" }} href="" onClick={
+                                    <Link style={{ marginLeft: "40px", marginTop: "80px", paddingTop: "25px" }} href="" onClick={
                                         () => this.props.history.push('/forgotPassword')
                                     }>
                                         forgot password?

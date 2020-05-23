@@ -1,7 +1,5 @@
 /* eslint-disable*/
 import React from 'react';
-import SearchIcon from '@material-ui/icons/Search'
-import InputBase from '@material-ui/core/InputBase'
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -24,12 +22,14 @@ import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
 import './dashboard.css'
 import ak from './image/ak.png'
-import { post } from 'axios';
 import AddAPhotoOutlinedIcon from '@material-ui/icons/AddAPhotoOutlined';
 import CreateLabel from './CreateLabel';
 import GetAllLabels from './GetAllLabels';
 import Avatar from '@material-ui/core/Avatar'
 import Practice from './Pratice';
+import Search from './Search';
+import ViewAgendaOutlinedIcon from '@material-ui/icons/ViewAgendaOutlined';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 export default function Dashboard(props) {
@@ -55,27 +55,6 @@ export default function Dashboard(props) {
     console.log(isopen)
   };
 
-  const onFormSubmit = (e) => {
-    e.preventDefault()
-    fileUpload(file).then((response) => {
-      console.log(response.data);
-    })
-  }
-
-  const fileUpload = (file) => {
-    const url = 'http://localhost:8080/home/uplaodImage';
-    const formData = new FormData();
-    formData.append('file', file)
-    const config = {
-      headers: {
-        contentType: 'application/json',
-        'token': sessionStorage.getItem('token'),
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'PUT,POST,DELETE'
-      }
-    }
-    return post(url, formData.name, config)
-  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -103,7 +82,6 @@ export default function Dashboard(props) {
   }
 
 
-
   return (
     <div>
       <div className="appbar">
@@ -122,14 +100,12 @@ export default function Dashboard(props) {
             <Typography className="logo" variant="h5" fontStyle="Italic" noWrap align="center">
               FunDoo
             </Typography>
-            <div className="searchIcon">
-              <SearchIcon />
-            </div>
-            <div className="search">
-              <InputBase placeholder="Search…" style={{ width: "440px" }} />
-            </div>
+            <Search style={{ marginLeft: "200px" }} />
             <div>
               <SettingsIcon id="setting" />
+            </div>
+            <div style={{ marginLeft: "60px" }}>
+              <ViewAgendaOutlinedIcon />
             </div>
             <div>
               <IconButton
@@ -148,9 +124,13 @@ export default function Dashboard(props) {
                 }}
                 open={openn}
                 onClose={handleMenuClose}
-              ><Practice />
+              >
+                <Practice />
                 <MenuItem onClick={handleMenuClose}>My account</MenuItem>
               </Menu>
+            </div>
+            <div>
+              <MoreVertIcon />
             </div>
           </Toolbar>
         </AppBar>
@@ -207,13 +187,14 @@ export default function Dashboard(props) {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-            <GetAllLabels />
+            <GetAllLabels data={props.data} />
           </List>
           <List className="over">
             {["Edit Label"].map((text, index) => (
               <ListItem button key={text} onClick={openEditLabel}>
                 <ListItemIcon>
                   <CreateIcon />
+                  <CreateLabel />
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>

@@ -9,6 +9,7 @@ import Maincomponent from '../component/Maincomponent'
 import NoteCard from '../component/NoteCard'
 import ListOfArchiveNotes from '../component/ListOfArchiveNotes'
 import ListOfReminder from '../component/ListOfReminder'
+import Search from '../component/Search'
 
 export default function Router(props) {
     return (
@@ -22,6 +23,7 @@ export default function Router(props) {
             <Route path={'/dashboard/trash'} exact component={ListOfTrash} />
             <Route path={'/dashboard/archive'} exact component={ListOfArchiveNotes} />
             <Route path={'/dashboard/reminder'} exact component={ListOfReminder} />
+            <Route path={'/dashboard/search'} exact component={Search} />
         </BrowserRouter>
     );
 }

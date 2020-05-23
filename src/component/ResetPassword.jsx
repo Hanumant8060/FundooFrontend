@@ -61,8 +61,9 @@ class ResetPassword extends Component {
                     </div>
                     <div className="form-row">
                         <Button variant="contained"
-                            onClick={this.resetPassWord}>
-                            Submit </Button>
+                        onClick={this.resetPassWord}>
+                         Submit
+                         </Button>
                     </div>
                 </form>
             </div>

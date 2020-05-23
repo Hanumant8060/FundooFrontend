@@ -17,7 +17,7 @@
 .layout{
     align-items: center;
     border-width: 10px;
-    background-origin: padding-box;
+    /* background-origin: padding-box; */
 
 }
 .input[type='text']{

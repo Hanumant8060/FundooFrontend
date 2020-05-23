@@ -5,17 +5,16 @@
   }
   .searchIcon {
     width: 5px;
-    height: "100%";
     position: "absolute";
-    margin-left: 120px;
+    margin-left: 200px;
     display: "flex";
     padding-right: 20px; 
   }
   
   .search{
     width:450px;
-    margin-left: 5px;
-    padding-left: 0px;
+    margin-left: 20px;
+    padding-left: 20px;
     box-sizing: border-box;
     border-radius: 9;
     background-color: rgb(218, 231, 229);
@@ -29,13 +28,14 @@
     
   }
   .logo {
-    padding: 20px;
+    padding: 3px;
+    margin-left: 120px;
   }
 
   #setting{
     float: right;
     padding-left: 250px;
-    margin-left: 20px;
+    margin-left: 200px;
     align-items: center;
     /* margin-top: 10px; */
     
@@ -91,9 +91,9 @@
   
   }
   .account{
-    margin-left: 100px;
+    margin-left: 40px;
     /* padding-left: 80px; */
-    display: flex;
+    /* display: flex; */
     /* justify-content: flex-end; */
   }
  

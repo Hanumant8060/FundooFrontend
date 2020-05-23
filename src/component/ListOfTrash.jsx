@@ -17,27 +17,29 @@ function ListOfTrash(props) {
         listOfTrash()
             .then(response => {
                 setListTrashNote(response.data)
-                console.log("response ---->", response.data)
+                console.log(response.data)
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 
     const unTrashNote = (noteid) => {
         untrash(noteid)
             .then(response => {
-                console.log("response ---->", response.data)
+                console.log(response.data)
+                getAllTrashNotes();
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 
     const deletefromTrash = (id) => {
         deletefromtrash(id)
             .then(response => {
-                console.log("response ---->", response.data)
+                console.log(response.data)
+                getAllTrashNotes();
             }).catch(error => {
-                console.log("error ---->", error)
+                console.log(error)
             })
     }
 
