@@ -1,17 +1,33 @@
 import React from "react";
-import Popover from "@material-ui/core/Popover";
+import {Popover,Snackbar} from "@material-ui/core";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import TextField from "@material-ui/core/TextField";
 import { addReminder } from "../Service/Service";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  snackbar: {
+    [theme.breakpoints.down('xs')]: {
+      bottom: 90,
+    },
+  },
+}));
+
 function Greeting(props) {
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [currentDate, setCurrentDate] = React.useState("");
+  const [snackbar, setSnackbar] = React.useState(false);
+  const [snackbarMsg, setSnackbarMsg] = React.useState("");
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
+  const snackbarClose = () => {
+    setSnackbar(false);
+  }
 
   const handleClose1 = () => {
     setAnchorEl(null);
@@ -24,6 +40,8 @@ function Greeting(props) {
 
   const setReminder = (noteid) => {
     addReminder(currentDate, noteid).then(response => {
+      setSnackbar(true);
+      setSnackbarMsg(response.data.message);
       console.log("response ---->", response.data)
     }).catch(error => {
       console.log("error ---->", error)
@@ -91,6 +109,13 @@ function Greeting(props) {
           Save
           </div>
       </Popover>
+      <Snackbar
+              open={snackbar}
+              autoHideDuration={4000}
+              onClose={snackbarClose}
+              message={snackbarMsg}
+              className={classes.snackbar}
+            />
 
     </div>
   );

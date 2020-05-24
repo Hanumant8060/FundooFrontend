@@ -80,6 +80,11 @@ export default function Dashboard(props) {
   const handleReminder = () => {
     props.data.history.push('/dashboard/reminder')
   }
+  
+  const SessionClear = () => {
+    sessionStorage.clear();
+    props.data.history.push('/')
+  }
 
 
   return (
@@ -126,7 +131,7 @@ export default function Dashboard(props) {
                 onClose={handleMenuClose}
               >
                 <Practice />
-                <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                <MenuItem onClick={()=>SessionClear()}>Sign Out</MenuItem>
               </Menu>
             </div>
             <div>

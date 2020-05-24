@@ -9,23 +9,14 @@ import ArchievedNote from './ArchievedNote';
 import AddCollaborator from './AddCollaborator';
 import AddReminder from './AddReminder';
 import AddLabelToNote from './AddLabelToNote';
-import { getNotes } from '../Service/Service';
 import Setcolor from './Setcolor';
 
 export default function IconList(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [popper, setPopper] = React.useState(false);
-    const [anchorE, setAnchorE] = React.useState(null);
     const [anchorE2, setAnchorE2] = React.useState(null);
     const [date, setDate] = React.useState(new Date);
 
-    const handleClick1 = event => {
-        setAnchorE(event.currentTarget);
-    };
-
-    const handleClose1 = () => {
-        setAnchorE(null);
-    };
 
     const handleClick2 = event => {
         setAnchorE2(event.currentTarget);
@@ -44,13 +35,6 @@ export default function IconList(props) {
         setAnchorEl(null);
     };
 
-    const handlePopper = event => {
-        setPopper(event.currentTarget);
-    };
-
-    const handlePopperClose = () => {
-        setPopper(true);
-    };
     const open = Boolean(popper);
 
     return (
@@ -72,7 +56,7 @@ export default function IconList(props) {
                     <AddCollaborator data={props.data} />
                 </Tooltip></ListItemIcon>
             <ListItemIcon><Setcolor data={props.data} /></ListItemIcon>
-            <ArchievedNote data={props.data} />
+            <ArchievedNote data={props.data}  newData = {props.getnotes}/>
             <ListItemIcon>
                 <Tooltip title="more"><MoreVertIcon onClick={handleClick} /></Tooltip></ListItemIcon>
             <Menu
@@ -82,7 +66,7 @@ export default function IconList(props) {
                 onClose={handleClose}
             >
                 <AddLabelToNote data={props.data} />
-                <TrashNote data={props.data} />
+                <TrashNote data={props.data}  newFunctn ={props.getnotes}/>
             </Menu>
             <ListItemIcon><Button size="small" onClick={props.function}>Close</Button></ListItemIcon>
             <ListItemIcon> <Button size="small" onClick={props.func}>Create</Button>

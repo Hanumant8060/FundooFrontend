@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Popover, Button, Card, Divider, Avatar, InputBase, ListItemIcon, Tooltip, ListItemAvatar, ListItem, ListItemText, List, TextField, Snackbar } from '@material-ui/core';
+import { Popover, Button, Card,  Avatar,  ListItemIcon, Tooltip, ListItemAvatar, ListItem, ListItemText,  TextField, Snackbar } from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import { collaborate, getCollaboratorList } from '../Service/Service';
 import PersonIcon from '@material-ui/icons/Person';
@@ -40,22 +40,21 @@ export default function AddCollaborator(props) {
   };
 
   const collaboratorList = () => {
-    console.log("collaboratorlist");
-
     getCollaboratorList(props.data)
       .then(response => {
         setCollaboratorlist(response.data)
       }).catch(error => {
+        console.log(error)
       })
   }
+
   const addCollaborator = (noteid) => {
     collaborate(noteid, collaborator)
       .then(response => {
-        console.log("response ---->", response.data)
         setSnackbar(true);
         setSnackbarMsg(response.data.message);
       }).catch(error => {
-        console.log("error ---->", error)
+        console.log(error)
       })
   }
 

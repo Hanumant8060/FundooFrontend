@@ -36,7 +36,6 @@ function ListOfTrash(props) {
     const deletefromTrash = (id) => {
         deletefromtrash(id)
             .then(response => {
-                console.log(response.data)
                 getAllTrashNotes();
             }).catch(error => {
                 console.log(error)

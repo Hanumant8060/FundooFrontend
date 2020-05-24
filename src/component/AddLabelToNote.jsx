@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { add, LabelAddedToNote, displayLabelUnAdded, removeToLabelFromNote } from '../Service/Service';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Popover } from '@material-ui/core';
+import { Popover ,Snackbar} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -18,6 +19,8 @@ export default function AddLabelToNote(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [addlabeltonotes, setaddlabeltonote] = React.useState([]);
   const [unaddedlabel, setunaddedlabel] = React.useState([]);
+  const [snackbar, setSnackbar] = React.useState(false);
+  const [snackbarMsg, setSnackbarMsg] = React.useState("");
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -39,6 +42,9 @@ export default function AddLabelToNote(props) {
     })
   }
 
+  const snackbarClose = () => {
+    setSnackbar(false);
+  }
 
   const displayLabelUnAddedToNotes = () => {
     displayLabelUnAdded(props.data).then(Response => {
@@ -50,7 +56,8 @@ export default function AddLabelToNote(props) {
 
   const addLabelToNotes = (labelid) => {
     add(props.data, labelid).then(Response => {
-      console.log(Response.message);
+      setSnackbar(true);
+      setSnackbarMsg(Response.data.message);
       displayLabelAddedToNote();
     }).catch((error) => {
       console.log(error.Response.message);
@@ -59,10 +66,11 @@ export default function AddLabelToNote(props) {
 
   const removeLabel = (labelid) => {
     removeToLabelFromNote(labelid, props.data).then(Response => {
-      console.log(Response.data.message)
+      setSnackbar(true);
+      setSnackbarMsg(Response.data.message);
       displayLabelUnAddedToNotes();
     }).catch((error) => {
-      console.log(error.response.message);
+      console.log(error);
     })
   }
 
@@ -96,6 +104,13 @@ export default function AddLabelToNote(props) {
             ))}
           </div>
         </Popover>
+        <Snackbar
+              open={snackbar}
+              autoHideDuration={4000}
+              onClose={snackbarClose}
+              message={snackbarMsg}
+              className={classes.snackbar}
+            />
       </div>
     </div>
 

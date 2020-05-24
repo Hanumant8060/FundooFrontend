@@ -17,7 +17,6 @@ function ListOfReminder() {
         listOfReminder()
             .then(response => {
                 setListReminderNote(response.data)
-                console.log(response.data)
             }).catch(error => {
                 console.log(error)
             })

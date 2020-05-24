@@ -11,7 +11,8 @@ import CreateNote from './CreateNote';
 
 function NoteCard(props) {
     const [listNote, setListNote] = useState([])
-
+    
+    
 
     useEffect(() => {
         getAllNotes()
@@ -22,7 +23,6 @@ function NoteCard(props) {
     const pinNote = (noteid) => {
         ispin(noteid)
             .then(response => {
-                console.log(response.data)
                 getAllNotes();
             }).catch(error => {
                 console.log(error)
@@ -33,17 +33,16 @@ function NoteCard(props) {
         getNotes()
             .then(response => {
                 setListNote(response.data)
-                console.log(response.data)
             }).catch(error => {
                 console.log(error)
             })
     }
     return (
         <div>
-            <CreateNote position="fixed" />
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', position: "absolute" }}>
+            <CreateNote position="fixed" function={getAllNotes} />
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', position: "relative" }}>
                 {listNote.map(note => {
-                    return <div style={{ marginTop: '50px', marginBottom: '5px', marginLeft: '300px', width: '25%' }}>
+                    return <div style={{ marginTop: '30px', marginBottom: '5px', marginLeft: '300px', width: '25%' }}>
                         <Card style={{ height: "140px", borderRadius: "6px", backgroundColor: note.color }} >
                             <div>
                                 {note.note_title}
@@ -68,7 +67,7 @@ function NoteCard(props) {
                                 {note.note_disc}
                             </div>
                             <Divider />
-                            <IconList data={note.noteId} />
+                            <IconList data={note.noteId}  getnotes ={getAllNotes}/>
                         </Card>
                     </div>
                 })}

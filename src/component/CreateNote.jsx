@@ -1,14 +1,31 @@
 /* eslint-disable*/
-import React, { Component } from 'react';
-import { ListItemIcon, Tooltip } from '@material-ui/core'
+import React from 'react';
+import { ListItemIcon, Tooltip, Snackbar } from '@material-ui/core'
 import Divider from "@material-ui/core/Divider";
 import { note } from '../Service/Service';
 import IconList from './IconList';
 import { Card, InputBase } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-function CreateNote() {
+
+const useStyles = makeStyles((theme) => ({
+  snackbar: {
+    [theme.breakpoints.down('xs')]: {
+      bottom: 90,
+    },
+  },
+}));
+
+function CreateNote(props) {
   const [notein, setNotein] = React.useState({ title: '', desc: '' });
   const [state, setState] = React.useState(false);
+  const [snackbar, setSnackbar] = React.useState(false);
+  const [snackbarMsg, setSnackbarMsg] = React.useState("");
+  const classes = useStyles();
+
+  const snackbarClose = () => {
+    setSnackbar(false);
+  }
 
   const openfile = () => {
     setState(true)
@@ -29,8 +46,9 @@ function CreateNote() {
     notes.note_disc = notein.desc
     note(notes)
       .then(Response => {
-        console.log(Response.data.message)
-        alert(Response.data.message)
+        setSnackbar(true);
+        setSnackbarMsg(Response.data.message);
+        props.function();
       })
       .catch(error => {
         console.log(error.response.data)
@@ -72,6 +90,13 @@ function CreateNote() {
         </div>
         {state ?
           <div >
+             <Snackbar
+              open={snackbar}
+              autoHideDuration={4000}
+              onClose={snackbarClose}
+              message={snackbarMsg}
+              className={classes.snackbar}
+            />
             <Divider />
             <Divider />
             <IconList function={closepanel} func={createNote} />

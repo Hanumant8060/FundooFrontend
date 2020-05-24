@@ -72,6 +72,7 @@ class SimplePopover extends React.Component {
             vertical: "top",
             horizontal: "center"
           }}
+          onClose={this.handleClose}
         >
           <div>
             <div

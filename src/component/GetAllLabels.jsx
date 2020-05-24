@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { getLabels, add } from '../Service/Service'
-import { ListItemIcon, List, Checkbox } from '@material-ui/core'
-import LabelIcon from '@material-ui/icons/Label';
+import { getLabels} from '../Service/Service'
+import { ListItemIcon, List } from '@material-ui/core'
+import LabelOutlinedIcon from '@material-ui/icons/LabelOutlined';
 
 function GetAllLabels(props) {
     const [listLabel, setListLabel] = React.useState([])
@@ -24,10 +24,10 @@ function GetAllLabels(props) {
     return (
         <div>
             {listLabel.map(label =>
-                <div>
+                <div style={{fontSize: "17px", fontStyle: "Italic",fontWeight:"500px"}}>
                     <List>
                         <ListItemIcon>
-                            <LabelIcon />
+                           <LabelOutlinedIcon/>
                             {label.labelname}
                         </ListItemIcon>
                     </List>
